@@ -1,0 +1,128 @@
+% Set the document class and theme
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{theorems}[numbered]
+
+\usepackage{./presentation_macros}
+
+% Add presentation data here
+
+% Text in the square brackets `[]' are shown in the footer. If not mentioned,
+% then text in the curly braces `{}' are used as theme defaults.
+
+\title[ZE-V2V]{Zone Encryption with Anonymous Authentication for V2V Communication \\
+\small Jan Camenisch, Manu Drijvers, Anja Lehmann, Gregory Neven and Patrick Towa}
+\date{April 23, 2024}
+\author{Gautam Singh}
+\institute[]{Indian Institute of Technology Hyderabad}
+
+% Presentation begins here
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \section{Introduction}
+    
+    \begin{frame}
+        \frametitle{What is V2X?}
+        \begin{enumerate}
+            \item Introduce V2X-related terms like pseudonym, RSU, CAM, etc.
+            \item Mention US/Europe standards for V2X.
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{V2X and Cryptology}
+        \begin{enumerate}
+            \item 100/20 pseudonyms per week
+            \item 300 byte per CAM bandwidth constraint
+            \item Crypto implications of the above
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Motivation and Goals}
+        \begin{enumerate}
+            \item Aim to tackle the problem of privacy.
+            \item Address the problem of authenticity and confidentiality in
+            combination \emph{for the first time} (important to mention this?).
+            \item Meet (bandwidth) requirements.
+            \item Efficient encryption scheme (symmetric-key crypto).
+            \item Better security guarantees (privacy, authenticity,
+            confidentiality).
+        \end{enumerate}
+    \end{frame}
+
+    \section{Preliminaries}
+    \begin{frame}
+        \frametitle{Preliminaries}
+        This is a slide with the list of preliminaries needed to understand ZE.
+        We pick up the ones not covered.
+        \begin{enumerate}
+            \item Pairing Groups
+            \item Hardness Assumptions (lot of notation, may be hard to grasp)
+            \begin{enumerate}
+                \item SDL
+                \item q-MSDH-1
+            \end{enumerate}
+            \item Deterministic Authenticated Encryption (how much to cover?)
+            \item PS Signatures
+        \end{enumerate}
+    \end{frame}
+
+    \section{Group Signatures with Attributes}
+    \begin{frame}
+        \frametitle{DGS+A}
+        Sub-headings
+        \begin{enumerate}
+            \item Syntax
+            \item Security properties (no proofs)
+            \item Instantiation from PS
+            \item Can be extended to threshold opening (should be a slide or
+            only a mention during talk?)
+        \end{enumerate}
+    \end{frame}
+
+    \section{Zone Encryption}
+    
+    \begin{frame}
+        \frametitle{Syntax of ZE Scheme}
+        \begin{enumerate}
+            \item Define zone, payload, epoch.
+            \item Explain all the algos used.
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Security Properties}
+        Attack game and definitions 3-6 (are theorems 4-8 needed?)
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Instantiation of ZE and Efficiency}    
+        (Is it worth mentioning section 4.4.1 or can we leave this?)
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Summary of ZE}
+        Table 2 of the paper.
+    \end{frame}
+
+    \section{Conclusion}
+    \begin{frame}
+        \frametitle{Challenges in Deploying ZE}
+        Section 4.6
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Future Improvements}
+        Section 4.6, brief and top-level idea of mini-project if time permits.
+    \end{frame}
+
+    % \section{References}
+    % \begin{frame}[allowframebreaks]
+    %     % \frametitle{References}
+    %     \bibliography{references.bib}
+    % \end{frame}
+\end{document}

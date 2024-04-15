@@ -25,19 +25,79 @@
     \section{Introduction}
     
     \begin{frame}
-        \frametitle{What is V2X?}
+        \frametitle{V2X Related Terminology}
+        \begin{figure}
+            \centering
+            \resizebox{.8\textwidth}{!}{\input{figs/v2x.tex}}
+            \caption{A breakdown of V2X.}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Message Types in V2X}
         \begin{enumerate}
-            \item Introduce V2X-related terms like pseudonym, RSU, CAM, etc.
-            \item Mention US/Europe standards for V2X.
+            \item \textbf{Cooperative Awareness Messages} (CAMs)
+            \cite{etsi-en-302-637} and \textbf{Basic Safety Messages} (BSMs)
+            \begin{enumerate}
+                \item Exchanged between vehicles to create awareness and support
+                cooperative performance of vehicles in the road network.
+                \item Includes status information such as time, position, speed,
+                active systems, vehicle dimensions, etc.
+            \end{enumerate}
+            \pause
+            \item Other types of messages
+            \begin{enumerate}
+                \item \textbf{Signal Phase and Timing} (SPaT)
+                \item \textbf{Roadside Infrastructure Information} (MAP)
+            \end{enumerate} 
         \end{enumerate}
     \end{frame}
 
     \begin{frame}
         \frametitle{V2X and Cryptology}
         \begin{enumerate}
-            \item 100/20 pseudonyms per week
-            \item 300 byte per CAM bandwidth constraint
-            \item Crypto implications of the above
+            \item CAMs broadcasted unencrypted in 5.9 GHz channel (ETSI ITS-G5).
+            \begin{enumerate}
+                \item Frequently broadcast: 1 CAM per second in US, 10 per
+                second in EU.
+                \item Easy to intercept.
+                \item Leak sensitive information about the vehicle owners.
+                \pause
+                \item \textbf{Huge privacy concerns and threats!}
+            \end{enumerate}
+            \pause
+            \item Encryption impractical, since CAMs \emph{must} be decrypted by
+            nearby vehicles in a highly dynamic environment.
+            \begin{enumerate}
+                \item But CAMs \emph{have to} be encrypted because of the data
+                they carry!
+            \end{enumerate}
+            \pause
+            \item Instead, focus on \emph{privacy-preserving authentication}.
+            \begin{enumerate}
+                \item Ensuring a message is issued by a ``genuine'' vehicle.
+                \item ``Genuine'' vehicles must be untraceable.
+            \end{enumerate}
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{V2X and Cryptology}
+        \begin{enumerate}
+            \item Deployed systems
+            \begin{enumerate}
+                \item Use short-term \textbf{pseudonym certificates} (100 per
+                week in EU, 20 per week in US), rotate between them.
+                \item Trade-off between security (Sybil resistance), privacy and
+                efficiency (storage and bandwidth costs).
+            \end{enumerate}
+            \pause
+            \item Proposed systems
+            \begin{enumerate}
+                \item Stronger privacy and security guarantees.
+                \item Do not fit the \emph{stringent bandwidth constraint} of
+                \textbf{300 bytes per CAM}, thus they are impractical.
+            \end{enumerate}
         \end{enumerate}
     \end{frame}
 
@@ -123,9 +183,9 @@
         Section 4.6, brief and top-level idea of mini-project if time permits.
     \end{frame}
 
-    % \section{References}
-    % \begin{frame}[allowframebreaks]
-    %     % \frametitle{References}
-    %     \bibliography{references.bib}
-    % \end{frame}
+    \section{References}
+    \begin{frame}[allowframebreaks]
+        \frametitle{References}
+        \bibliography{references.bib}
+    \end{frame}
 \end{document}

@@ -9,7 +9,7 @@
 \usepackage{algorithm}
 \usepackage{appendixnumberbeamer}
 \usepackage[indLines=false]{algpseudocodex}
-\bibliographystyle{ieeetran}
+\usepackage[style=ieee,bibstyle=numeric,citestyle=verbose]{biblatex}
 
 % Add required macros here
 
@@ -31,6 +31,9 @@
 \providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
 \providecommand{\lcbrak}[1]{\ensuremath{\left\{#1\right.}}
 \providecommand{\rcbrak}[1]{\ensuremath{\left.#1\right\}}}
+\providecommand{\abrak}[1]{\ensuremath{\left\langle #1 \right\rangle}}
+\providecommand{\labrak}[1]{\ensuremath{\left\langle #1 \right.}}
+\providecommand{\rabrak}[1]{\ensuremath{\left. #1 \right\rangle}}
 \providecommand{\ceil}[1]{\ensuremath{\left\lceil#1\right\rceil}}
 \newcommand{\sgn}{\mathop{\mathrm{sgn}}}
 \providecommand{\abs}[1]{\left\vert#1\right\vert}

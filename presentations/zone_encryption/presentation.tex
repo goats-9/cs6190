@@ -18,7 +18,7 @@
 Communication \\
 \small Jan Camenisch, Manu Drijvers, Anja Lehmann, Gregory Neven and Patrick
 Towa}
-\date{April 23, 2024}
+\date{April 27, 2024}
 \author{Gautam Singh}
 \institute[IITH]{Indian Institute of Technology Hyderabad}
 
@@ -41,16 +41,16 @@ Towa}
     \begin{frame}
         \frametitle{Message Types in V2X}
         \begin{enumerate}
-            \item \textbf{Cooperative Awareness Messages} (CAMs)
+            \item<1-> \textbf{Cooperative Awareness Messages} (CAMs)
             \footcite{etsi-en-302-637} and \textbf{Basic Safety Messages} (BSMs)
+            \footcite{J2735_202309V2XCommunications}.
             \begin{enumerate}
                 \item Exchanged between vehicles to create awareness and support
                 cooperative performance of vehicles in the road network.
                 \item Includes status information such as time, position, speed,
                 active systems, vehicle dimensions, etc.
             \end{enumerate}
-            \pause
-            \item Other types of messages
+            \item<2-> Other types of messages
             \begin{enumerate}
                 \item \textbf{Signal Phase and Timing} (SPaT)
                 \item \textbf{Roadside Infrastructure Information} (MAP)
@@ -61,61 +61,57 @@ Towa}
     \begin{frame}
         \frametitle{V2X and Cryptology}
         \begin{enumerate}
-            \item CAMs broadcasted unencrypted in 5.9 GHz channel (ETSI ITS-G5).
-            \begin{enumerate}
-                \item Frequently broadcast: 1 CAM per second in US, 10 per
+            \item<1-> CAMs broadcasted unencrypted in 5.9 GHz channel (ETSI ITS-G5).
+            \begin{itemize}
+                \item<2-> Frequently broadcast: 1 CAM per second in US, 10 per
                 second in EU.
-                \item Easy to intercept.
-                \item Leak sensitive information about the vehicle owners.
-                \pause
-                \item \textbf{Huge privacy concerns and threats!}
-            \end{enumerate}
-            \pause
-            \item Encryption impractical, since CAMs \emph{must} be decrypted by
+                \item<2-> Easy to intercept.
+                \item<2-> Leak sensitive information about the vehicle owners.
+                \item<3-> \textbf{Huge privacy concerns and threats!}
+            \end{itemize}
+            \item<4-> Encryption impractical, since CAMs \emph{must} be decrypted by
             nearby vehicles in a highly dynamic environment.
-            \begin{enumerate}
+            \begin{itemize}
                 \item But CAMs \emph{have to} be encrypted because of the data
                 they carry!
-            \end{enumerate}
-            \pause
-            \item Instead, focus on \emph{privacy-preserving authentication}.
-            \begin{enumerate}
+            \end{itemize}
+            \item<5-> Instead, focus on \emph{privacy-preserving authentication}.
+            \begin{itemize}
                 \item Ensuring a message is issued by a ``genuine'' vehicle.
                 \item ``Genuine'' vehicles must be untraceable.
-            \end{enumerate}
+            \end{itemize}
         \end{enumerate}
     \end{frame}
 
     \begin{frame}
         \frametitle{V2X and Cryptology}
         \begin{enumerate}
-            \item Deployed systems
-            \begin{enumerate}
+            \item<1-> Deployed systems
+            \begin{itemize}
                 \item Use short-term \textbf{pseudonym certificates} (100 per
                 week in EU, 20 per week in US), rotate between them.
                 \item Trade-off between security (Sybil resistance), privacy and
                 efficiency (storage and bandwidth costs).
-            \end{enumerate}
-            \pause
-            \item Proposed systems
-            \begin{enumerate}
+            \end{itemize}
+            \item<2-> Proposed systems
+            \begin{itemize}
                 \item Stronger privacy and security guarantees.
                 \item Do not meet the \emph{stringent bandwidth constraint} of
                 \textbf{300 bytes per CAM}, thus impractical.
-            \end{enumerate}
+            \end{itemize}
         \end{enumerate}
     \end{frame}
 
     \begin{frame}
         \frametitle{Motivation and Goals}
         \begin{enumerate}
-            \item Unlimited privacy.
-            \item Address problems of authenticity and confidentiality in
+            \item<1-> Unlimited privacy.
+            \item<1-> Address problems of authenticity and confidentiality in
             combination \emph{for the first time}.
-            \item Meet (bandwidth) requirements.
-            \item Efficient encryption scheme (symmetric-key crypto).
-            \item Negligible storage and bandwidth overheads.
-            \item Better security guarantees (privacy, authenticity,
+            \item<2-> Meet (bandwidth) requirements.
+            \item<2-> Negligible storage and bandwidth overheads.
+            \item<3-> Efficient encryption scheme (symmetric-key crypto).
+            \item<3-> Better security guarantees (privacy, authenticity,
             confidentiality).
         \end{enumerate}
     \end{frame}
@@ -132,8 +128,9 @@ Towa}
                 \item Modified \(q\)-Strong Diffie-Hellman (q-MSDH-1) assumption
             \end{enumerate}
             \item Deterministic Authenticated Encryption (DAE)
-            \item PS Signatures
-            \item Dynamic Group Signatures with Attributes (DGS+A)
+            \item \red{PS Signatures}
+            \item \red{Dynamic Group Signatures with Attributes (DGS+A)}
+            \item<2-> \textbf{CS6190}
         \end{enumerate}
     \end{frame}
 
@@ -189,8 +186,9 @@ Towa}
                 \begin{enumerate}
                     \item A \emph{zone} \(z\) is a continuous geographical area
                     covering part of a road network (shown as squares alongside).
-                    \item<2-> Each zone has a \emph{zone key} \(K_{z,t}\) periodically
-                    refreshed after a time interval called an \emph{epoch}.
+                    \item<2-> Each zone has a \emph{zone key} \(K_{z,t}\)
+                    periodically refreshed after a time interval called an
+                    \emph{epoch}.
                     \begin{itemize}
                         \item An epoch is denoted by \(\rbrak{\lsbrak{e,e+1}}\).
                         Each time instance \(t\) satisfies \(e \le t < e + 1\)
@@ -266,8 +264,7 @@ Towa}
                 \end{itemize}
             \end{enumerate}
         \end{block}
-        \pause
-        \begin{block}{Receiving Long-term and Short-term Credentials}
+        \begin{block}<2->{Credential Issuance}
             \begin{enumerate}
                 \item \(\abrak{\mathsf{Enroll.V}\brak{pk_{\cE},\cV}
                 \leftrightharpoons
@@ -279,8 +276,9 @@ Towa}
                 \mathsf{Authorize.I}\brak{sk_{\cI},st_{\cI},\cV,e,\red{pk_{\cE}}}}
                 \rightarrow \abrak{cred_{\cV},st_{\cI}^{\prime}}\)
                 \begin{itemize}
-                    \item Vehicle uses certificate to obtain credentials.
-                    \item Issuer checks certificate using public key of issuer.
+                    \item<3-> Vehicle uses certificate to obtain credentials.
+                    \item<3-> Issuer checks certificate using public key of
+                    enrollment authority.
                 \end{itemize}
             \end{enumerate}
         \end{block}
@@ -301,13 +299,12 @@ Towa}
                 \item \(\mathsf{Exit}\brak{L_K,z,t} \rightarrow L_K^{\prime}\)
             \end{enumerate}
         \end{block}
-        \begin{block}{Sending and Receiving Payloads}
+        \begin{block}<2->{Sending and Receiving Payloads}
             \begin{enumerate}
                 \item \(\mathsf{Send}\brak{L_K,P,\red{Y\subseteq Z},t}
                 \rightarrow \gamma/\perp\)
                 \item \(\mathsf{Receive}\brak{L_K,\gamma} \rightarrow P/\perp\)
-                \item It's all symmteric key cryptography! (But what is the
-                symmetric key?)
+                \item It's all symmteric key cryptography!
             \end{enumerate}
         \end{block}
     \end{frame}
@@ -320,14 +317,14 @@ Towa}
                 \rightarrow \cV/\perp\)
                 \item \(m\) is a message that was sent during an execution of
                 \textsf{Enter}.
-                \item Only \(\cI\) can find which vehicle sent \(m\).
-                \item Use cases
+                \item<2-> Only \(\cI\) can find which vehicle sent \(m\). Use
+                cases
                 \begin{itemize}
                     \item To revoke certificates of misbehaving vehicles.
                     \item To provide concrete court evidence.
                 \end{itemize}
-                \item Assuming identity escrow is rare, \textsf{Open} need not
-                be efficient in terms of time/storage complexity.
+                \item<3-> Assuming identity escrow is rare, \textsf{Open} need
+                not be efficient in terms of time/storage complexity.
             \end{enumerate}
         \end{block}
     \end{frame}
@@ -335,41 +332,247 @@ Towa}
     \begin{frame}
         \frametitle{Security of ZE}
         \begin{enumerate}
-            \item \textbf{}
+            \item \textbf{Anonymity}: Ciphertexts and messages during
+            \(\mathsf{Enter}\) do not reveal info about the vehicle that sent
+            them.
+            \begin{itemize}
+                \item Not necessary for messages associated with
+                \(\mathsf{Authorize}\). (Why?)
+            \end{itemize}
+            \item<2-> \textbf{Traceability}: If a vehicle knows \(K_{z,t}\), it must
+            have entered zone \(z\) at time \(t\).
+            \begin{itemize}
+                \item Issuer can trace the messages during \(\mathsf{Enter}\) to
+                long-term identity.
+            \end{itemize}
+            \item<3-> \textbf{Ciphertext Integrity}: An efficient adversary cannot
+            compute a valid ciphertext \(\gamma\) for a given \(\brak{z,t}\)
+            without knowing \(K_{z,t}\).
+            \item<4-> \textbf{Payload-Hiding security against Chosen-Ciphertext
+            Attacks (PH-CCA)}: No efficient adversary can infer about the
+            underlying payload without knowing \(K_{z,t}\). 
         \end{enumerate}
     \end{frame}
 
     \begin{frame}
-        \frametitle{Instantiation of ZE and Efficiency}    
-        (Is it worth mentioning section 4.4.1 or can we leave this?)
+        \frametitle{Building Blocks of ZE}    
+        \begin{enumerate}
+            \item<1-> \(\mathsf{SIG}\): Signature scheme for long-term
+            certificates.
+            \item<2-> \(\mathsf{DGSA}\): Group signature scheme for short-term
+            credentials.
+            \item<3-> \(\mathsf{PKE}\): Public-key encryption for symmetric key
+            exchange.
+            \item<4-> \(\mathsf{SE}\): Symmetric-key encryption scheme for fast
+            encryption of larger payloads.
+            \item<5-> \(\mathsf{DAE}\): Deterministic Authenticated Encryption
+            for wrapping symmetric payload keys with zone keys.
+            \begin{itemize}
+                \item Why not do DAE on payloads?
+                \item<6-> \emph{Remember the CAM length constraint!}
+            \end{itemize} 
+        \end{enumerate}
     \end{frame}
 
     \begin{frame}
         \frametitle{Summary of ZE}
-        Table 2 of the paper.
+        \begin{table}[!ht]
+            \begin{tblr}{
+                width=\linewidth,
+                colspec = {|X[c,m]|X[c,m]|X[c,m]|},
+                hlines, vlines, measure=vbox,
+            }
+                \textbf{Parameter} & \textbf{Zone Encryption} & \textbf{C-ITS Proposal} \\
+                Encrypted CAM & Yes & No \\
+                Anonymity & Yes & No \\
+                Pseudonyms per Week & Unlimited & 100 (EU) / 20 (US) \\
+                CAM Authentication & DAE & ECDSA \\
+                Overhead per CAM & 224 Bytes & 160 Bytes \\
+                + per entered Zones & 284 (Request) / 300 (Response) Bytes & N/A
+            \end{tblr}
+            \caption{Comparison of zone encryption to current C-ITS proposals at a
+128-bit     security level.}
+            \label{tab:ze-comp}
+        \end{table}
     \end{frame}
 
-    \section{Group Signatures with Attributes}
+    \section{Dynamic Group Signatures with Attributes}
     \begin{frame}
-        \frametitle{DGS+A}
-        Sub-headings
+        \frametitle{Introduction to DGS+A}
         \begin{enumerate}
-            \item Syntax
-            \item Security properties (no proofs)
-            \item Instantiation from PS
-            \item Can be extended to threshold opening (should be a slide or
-            only a mention during talk?)
+            \item<1-> \textbf{Group
+            Signatures}\footcite{chaumGroupSignatures1991}: A scheme where a
+            user can sign a message anonymously on behalf of the group.
+            \begin{itemize}
+                \item<2-> Group size and composition is fixed, thus impractical.
+            \end{itemize}
+            \item<3-> \textbf{Dynamic Group
+            Signatures}\footcite{bonehShortGroupSignatures2004}: A scheme where
+            users can additionally join and leave the group at any time.
+            \item<4-> \textbf{Dynamic Group Signatures with Attributes}: Users
+            obtain membership credentials corresponding to a set of their
+            attributes by interacting with an issuer. Signatures are verified
+            w.r.t. attributes.
+            \begin{itemize}
+                \item<5-> Other attributes of the user need not be revealed.
+            \end{itemize}
+            \item<6-> DGS+A using
+            \(\mathsf{PS}\)\footcite{pointchevalShortRandomizableSignatures2015}
+            scheme.
+            \begin{itemize}
+                \item Can sign \(k\) message blocks \red{at once}.
+                \item No hash functions needed and signatures are
+                \red{randomizable}.
+                \item Also doubles up as a \red{ZKPoK} of \(\sigma\) on \(m\).
+            \end{itemize}
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Syntax of DGS+A}
+        \textbf{Note}: An \emph{issuer} \(\cI\) is a trusted party that issues
+        credentials to users and can find the user that generated a given
+        signature for a given message.
+        \begin{block}{Setup and Key Generation}
+            \begin{enumerate}
+                \item \(\mathsf{Setup}\brak{1^{\lambda}, k} \rightarrow pp\):
+                Generate public parameters.
+                \item \(\mathsf{KG.I}\brak{pp} \rightarrow
+                \brak{pk,\brak{sk,st}}\): Generate key pair for \(\cI\).
+            \end{enumerate}
+        \end{block}
+        \begin{block}{Credential Issuance}
+            \(\abrak{\mathsf{Issue.I}\brak{sk, st, id, A = \brak{a_i}_{i=1}^k} \leftrightharpoons \mathsf{Issue.U}\brak{id, A, pk}}
+            \rightarrow cred\): Interactive protocol between a user \(\cU\) 
+            and issuer \(\cI\) to obtain credentials \(cred\).
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{Syntax of DGS+A}
+        \begin{block}{Signing and Verification}
+            \begin{enumerate}
+                \item \(\mathsf{Auth}\brak{pk, cred, m} \rightarrow tok\):
+                Generate an \emph{authentication token} or signature on \(m\).
+                \item \(\mathsf{Vf}\brak{pk, m, A, tok} \rightarrow b \in
+                \cbrak{0,1}\): Verify whether \(tok\) has been properly
+                generated for the given \(m\) and \(A\).
+            \end{enumerate}
+        \end{block}
+        \begin{block}{Opening}
+            \(\mathsf{Open}\brak{sk, st, m, A, tok} \rightarrow id/\perp\):
+            Check whether \(tok\) was generated properly and recover the
+            identity \(id\) of the user that generated \(tok\).
+            
+            \textbf{Note}: Time complexity of \(\mathsf{Open}\) is
+            \(\cO\brak{\abs{ID}}\).
+        \end{block}
+        \begin{enumerate}
+            \item \textbf{Security Properties}: Correctness, Traceability,
+            Anonymity.
+            \item \textbf{Application to ZE}: 216 Byte token size at 128-bit
+            security level.
+            \item Extension to threshold opening.
         \end{enumerate}
     \end{frame}
 
     \section{Conclusion}
     \begin{frame}
-        \frametitle{Challenges in Deploying ZE}
-        Section 4.6
+        \frametitle{Challenges and Future Improvements}
+        \begin{enumerate}
+            \item<1-> \textbf{Key Agreement Strategy}
+            \begin{itemize}
+                \item Which vehicle should reply to an entering vehicle?
+                \item How to handle key clusters due to transmission loss?
+                \item How to refresh zone keys (and who will generate them)?
+            \end{itemize}
+            \item<2-> \textbf{Robustness / Implementation Details}
+            \begin{itemize}
+                \item Encrypting payloads under zone keys in a region.
+                \item Overlapping time periods for smooth transition.
+                \item Robust communication medium and retransmission mechanisms.
+            \end{itemize}
+            \item<3-> Do we \emph{really} need to encrypt CAMs?
+            \begin{itemize}
+                \item Google (Maps) may already be profiling us!
+                \item Focus on more sensitive messages and information sent less
+                frequently.
+                \item Avoid complexities in implementation of ZE.
+            \end{itemize}
+        \end{enumerate}
+    \end{frame}
+
+    \section{Summary}
+    \begin{frame}
+        \frametitle{Summary}
+        \begin{enumerate}
+            \item<1-> Brief Introduction on V2X.
+            \begin{itemize}
+                \item Services of V2X
+                \item Standards involved in V2X
+                \item V2X and cryptography. \emph{Huge discrepancies}
+            \end{itemize}
+            \item<2-> Zone Encryption
+            \begin{itemize}
+                \item Motivation and goals
+                \item Overall flow
+                \item Syntax
+                \item Building blocks
+                \item Security properties
+                \item Comparison to other proposals
+            \end{itemize}
+            \item<3-> DGS+A
+            \begin{itemize}
+                \item Syntax
+                \item Instantiation from PS
+                \item Application to ZE
+            \end{itemize}
+        \end{enumerate}
+    \end{frame}
+
+    \appendix
+    \section{Pointcheval-Sanders Signatures}
+    \begin{frame}
+        \frametitle{Pointcheval-Sanders Signatures}
+        Consider \(\Gamma = \brak{q, \bG_0, \bG_1, \bG_T, e: \bG_0 \times \bG_1
+        \rightarrow \bG_T} \leftarrow \mathsf{G}\brak{1^{\lambda}}\), where
+        \(\mathsf{G}\) is a type-3 pairing group generator and \(\lambda\) is
+        the \emph{security parameter}, \(\mathsf{PS}\) consists of the following
+        algorithms.
+        \begin{algorithm}[H]
+            \caption{\(\mathsf{PS.KG}\)}
+            \label{alg:ps-kg}
+            \begin{algorithmic}[1]
+                \Require{Pairing group \(\Gamma\) and number of message blocks \(k\).}
+                \Ensure{Signing and verification key \(\brak{vk,sk}\).}
+                \State Generate \(g_1 \in_R \bG_1\), \(x, y_1, \ldots, y_{k+1} \in_R \bZ_q\).
+                \State Compute \(X \gets g_1^x\) and \(Y_j \gets g_1^j\) for \(j \in \cbrak{1, \ldots, k+1}\).
+                \State \Return \(sk \gets \brak{x, y_1, \ldots, y_{k+1}}\) and \(vk \gets \brak{X, Y_1, \ldots, Y_{k+1}}\).
+            \end{algorithmic}
+        \end{algorithm}
     \end{frame}
 
     \begin{frame}
-        \frametitle{Future Improvements}
-        Section 4.6, brief and top-level idea of mini-project if time permits.
+        \frametitle{Pointcheval-Sanders Signatures}
+        \begin{algorithm}[H]
+            \caption{\(\mathsf{PS.Sign}\)}
+            \label{alg:ps-sign}
+            \begin{algorithmic}[1]
+                \Require{Signing key \(sk\) and message \(m = \brak{m_1, \ldots, m_k}\).}
+                \Ensure{Signature \(\sigma\) on \(m\).}
+                \State Generate \(h \in_R \bG_1, m^{\prime} \in_R \bZ_q\).
+                \State \Return \(\sigma \gets \brak{m^{\prime}, h, h^{x + \sum_{j=1}^ky_jm_j + y_{k+1}m^{\prime}}}\).
+            \end{algorithmic}
+        \end{algorithm}
+
+        \begin{algorithm}[H]
+            \caption{\(\mathsf{PS.Vf}\)}
+            \label{alg:ps-vf}
+            \begin{algorithmic}[1]
+                \Require{Verification key \(vk\), message \(m = \brak{m_1, \ldots, m_k}\), signature \(\sigma = \brak{m^{\prime}, \sigma_1, \sigma_2}\) on \(m\).}
+                \Ensure{\(b \in \cbrak{0, 1}\).}
+                \State \Return \(b \gets e\brak{\sigma_1, X\prod_{j=1}^kY_j^{m_j}Y_{k+1}^{m^{\prime}}} \stackrel{?}{=} e\brak{\sigma_2, g_1}\)
+            \end{algorithmic}
+        \end{algorithm}
     \end{frame}
+
 \end{document}

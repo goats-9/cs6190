@@ -204,7 +204,9 @@ Towa}
                 \begin{figure}
                     \centering
                     \includegraphics[width=\columnwidth]{figs/ze_zones.png}
-                    \caption{A vehicle must have the zone keys of zones adjacent to it. It can communicate with another vehicle if they share a zone key.}
+                    \caption{A vehicle must have the zone keys of zones adjacent
+                    to it. It can communicate with another vehicle if they share
+                    a zone key.}
                 \end{figure}
             \end{column}
         \end{columns}
@@ -339,15 +341,15 @@ Towa}
                 \item Not necessary for messages associated with
                 \(\mathsf{Authorize}\). (Why?)
             \end{itemize}
-            \item<2-> \textbf{Traceability}: If a vehicle knows \(K_{z,t}\), it must
-            have entered zone \(z\) at time \(t\).
+            \item<2-> \textbf{Traceability}: If a vehicle knows \(K_{z,t}\), it
+            must have entered zone \(z\) at time \(t\).
             \begin{itemize}
                 \item Issuer can trace the messages during \(\mathsf{Enter}\) to
                 long-term identity.
             \end{itemize}
-            \item<3-> \textbf{Ciphertext Integrity}: An efficient adversary cannot
-            compute a valid ciphertext \(\gamma\) for a given \(\brak{z,t}\)
-            without knowing \(K_{z,t}\).
+            \item<3-> \textbf{Ciphertext Integrity}: An efficient adversary
+            cannot compute a valid ciphertext \(\gamma\) for a given
+            \(\brak{z,t}\) without knowing \(K_{z,t}\).
             \item<4-> \textbf{Payload-Hiding security against Chosen-Ciphertext
             Attacks (PH-CCA)}: No efficient adversary can infer about the
             underlying payload without knowing \(K_{z,t}\). 
@@ -390,8 +392,8 @@ Towa}
                 Overhead per CAM & 224 Bytes & 160 Bytes \\
                 + per entered Zones & 284 (Request) / 300 (Response) Bytes & N/A
             \end{tblr}
-            \caption{Comparison of zone encryption to current C-ITS proposals at a
-128-bit     security level.}
+            \caption{Comparison of zone encryption to current C-ITS proposals at
+            a 128-bit security level.}
             \label{tab:ze-comp}
         \end{table}
     \end{frame}
@@ -574,5 +576,4 @@ Towa}
             \end{algorithmic}
         \end{algorithm}
     \end{frame}
-
 \end{document}

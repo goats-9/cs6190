@@ -102,13 +102,38 @@
     \end{frame}
 
     \begin{frame}
-        \frametitle{Anonymous Key Agreements}
+        \frametitle{Anonymous Key Agreement}
+        \begin{enumerate}
+            \item<1-> A key agreement protocol where two parties agree on a
+            shared secret key, without being able to determine the other party.
+            \item<2-> Pairing-based anonymous key agreement for V2X
+            \begin{itemize}
+                \item Clients should authenticate each other.
+                \item Clients should not be able to determine the identity of
+                each other.
+            \end{itemize}
+        \end{enumerate}
+    \end{frame}
 
+    \begin{frame}
+        \frametitle{Attributes, Credentials, Anonymous Credentials}
+        \begin{enumerate}
+            \item<1-> \textbf{Attributes}: Labels associated with a user that
+            describe them fully, such as role of a user.
+            \item<2-> \textbf{Credential}: Data possessed by a user that
+            demonstrates their attributes.
+            \item<3-> \textbf{Anonymous Credential}: Data possessed by a user
+            that demonstrates their attributes, \emph{without revealing any
+            additional information} about their identity.
+            \item<4-> For V2X, we require anonymous credentials to be issued to
+            vehicles regularly to ensure anonymity as well as to check
+            legitimacy of that vehicle.
+        \end{enumerate}
     \end{frame}
 
     \section{Our Proposition}
     \begin{frame}
-        \frametitle{Proposed Security Flow}
+        \frametitle{Proposed Message Flow}
     
         
     

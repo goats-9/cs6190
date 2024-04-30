@@ -1,0 +1,111 @@
+% Set the document class and theme
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{theorems}[numbered]
+\setbeamerfont{footnote}{size=\tiny}
+
+\usepackage{./presentation_macros}
+
+\addbibresource{references.bib}
+
+% Add presentation data here
+
+% Text in the square brackets `[]' are shown in the footer. If not mentioned,
+% then text in the curly braces `{}' are used as theme defaults.
+
+\title[AKA for V2X]{Anonymous Key Agreements for V2X Communication}
+\date{May 1, 2024}
+\author{Gautam Singh}
+\institute[IITH]{Indian Institute of Technology Hyderabad}
+
+% Presentation begins here
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \section{Introduction}
+    
+    \begin{frame}
+        \frametitle{V2X Related Terminology}
+        \begin{figure}
+            \centering
+            \resizebox{.8\textwidth}{!}{\input{figs/v2x.tex}}
+            \caption{A breakdown of V2X.}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Message Types in V2X}
+        \begin{enumerate}
+            \item<1-> \textbf{Cooperative Awareness Messages} (CAMs)
+            \footcite{etsi-en-302-637} and \textbf{Basic Safety Messages} (BSMs)
+            \footcite{J2735_202309V2XCommunications}.
+            \begin{enumerate}
+                \item Exchanged between vehicles to create awareness and support
+                cooperative performance of vehicles in the road network.
+                \item Includes status information such as time, position, speed,
+                active systems, vehicle dimensions, etc.
+                \item Broadcasted unencrypted in 5.9 GHz channel (ETSI ITS-G5).
+                \item \textbf{Huge privacy concerns and threats!}
+            \end{enumerate}
+            \item<2-> Other types of messages
+            \begin{enumerate}
+                \item \textbf{Signal Phase and Timing} (SPaT)
+                \item \textbf{Roadside Infrastructure Information} (MAP)
+            \end{enumerate} 
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Motivation and Goals}
+        \begin{enumerate}
+            \item<1-> Do we \emph{really} need to encrypt CAMs?
+            \begin{itemize}
+                \item Google (Maps) may already be profiling us!
+                \item Focus on encrypting more sensitive messages and
+                information sent less frequently.
+            \end{itemize}
+            \item<2-> Unlimited privacy.
+            \item<3-> Negligible storage and bandwidth overheads.
+            \item<4-> Better security guarantees (privacy, authenticity,
+            confidentiality).
+        \end{enumerate}
+    \end{frame}
+
+    \section{Preliminaries}
+
+    \begin{frame}
+        \frametitle{Pairings}
+        
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Anonymous Key Agreements}
+
+    \end{frame}
+
+    \section{Our Proposition}
+    \begin{frame}
+        \frametitle{Proposed Security Flow}
+    
+        
+    
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Analysis}
+    
+        
+    
+    \end{frame}
+
+    \section{Conclusion}
+    \begin{frame}
+        \frametitle{Conclusion}
+    
+        
+    
+    \end{frame}
+
+\end{document}

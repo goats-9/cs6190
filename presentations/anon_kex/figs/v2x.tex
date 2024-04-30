@@ -1,0 +1,16 @@
+\begin{tikzpicture}[
+    mindmap,
+    concept color=red!55!black,
+    text=white
+]
+    \node [concept] {\textbf{V2X}\\\small{Vehicle-to-Everything}}
+    child[grow=150] {node[concept] {\textbf{V2D}\\\tiny{Vehicle-to-Device}}}
+    child[grow=210] {node[concept] {\textbf{V2G}\\\tiny{Vehicle-to-Grid}}}
+    child[grow=0] {
+        node[concept] {\textbf{V2N}\\\tiny{Vehicle-to-Network}}
+        child[grow=60] {node[concept] {\textbf{V2C}\\\tiny{Vehicle-to-Cloud}}}
+        child[grow=120] {node[concept] {\textbf{V2P}\\\tiny{Vehicle-to-Pedestrian}}}
+        child[concept color=green,grow=240,text=black] {node[concept] {\textbf{V2V}\\\tiny{Vehicle-to-Vehicle}}}
+        child[concept color=green,grow=300,text=black] {node[concept] {\textbf{V2I}\\\tiny{Vehicle-to-Infrastructure}}}
+    };
+\end{tikzpicture}

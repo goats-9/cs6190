@@ -112,6 +112,15 @@
                 \item Clients should not be able to determine the identity of
                 each other.
             \end{itemize}
+            \item<3-> We use a pairing-based anonymous key agreement involving a
+            private key generator (PKG).
+            \begin{enumerate}
+                \item PKG has its own master private and public key.
+                \item PKG uses master secret key to generate secret keys for
+                clients.
+                \item Clients use this secret key to establish the shared secret
+                key.
+            \end{enumerate}
         \end{enumerate}
     \end{frame}
 
@@ -128,22 +137,58 @@
             \item<4-> For V2X, we require anonymous credentials to be issued to
             vehicles regularly to ensure anonymity as well as to check
             legitimacy of that vehicle.
+            \item<5-> We use DGSA (Dynamic Group Signatures with Attributes), an
+            anonymous credential signature scheme using attributes. The
+            anonymous credential can be abstracted as a \textbf{randomizable}
+            group element which proves legitimacy of user.
         \end{enumerate}
     \end{frame}
 
     \section{Our Proposition}
     \begin{frame}
+        \frametitle{Proposed Message Flow Diagram}
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=\columnwidth]{figs/flow.png}
+            \caption{Message flow of the proposed scheme.}
+            \label{fig:new-flow}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}
         \frametitle{Proposed Message Flow}
-    
-        
-    
+        \begin{enumerate}
+            \item<1-> Enrollment authority issues certificate to vehicle.
+            \item<2-> Issuer issues DGSA credential and vehicle secret key after
+            verifying certificate.
+            \begin{itemize}
+                \item This secret key is different from secret key associated
+                with certificate.
+                \item DGSA credentials guarantee authenticity.
+                \item Anonymous key agreement ensures that user identities
+                remain anonymous throughout communication.
+                \item This is done periodically every \emph{epoch}.
+            \end{itemize}
+            \item<3-> Vehicles exchange DGSA-signed randomized psuedonyms to
+            generate shared key for futher communicaton.
+        \end{enumerate}
     \end{frame}
 
     \begin{frame}
         \frametitle{Analysis}
-    
-        
-    
+        \begin{enumerate}
+            \item<1-> \textbf{Advantages}
+            \begin{itemize}
+                \item Fully anonymous communication, unlimited privacy.
+                \item Others cannot identify who is communicating.
+            \end{itemize}
+            \item<2-> \textbf{Disadvantages}
+            \begin{itemize}
+                \item A lot of pairing computations, for DGSA and for anonymous
+                key agreement. Incurs computational overheads.
+                \item Works for single-hop connections only.
+            \end{itemize}
+        \end{enumerate}
     \end{frame}
 
     \section{Conclusion}

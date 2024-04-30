@@ -67,8 +67,7 @@
                 information sent less frequently.
             \end{itemize}
             \item<2-> Unlimited privacy.
-            \item<3-> Negligible storage and bandwidth overheads.
-            \item<4-> Better security guarantees (privacy, authenticity,
+            \item<3-> Better security guarantees (privacy, authenticity,
             confidentiality).
         \end{enumerate}
     \end{frame}
@@ -77,7 +76,7 @@
 
     \begin{frame}
         \frametitle{Pairings}
-        \begin{definition}{Pairing}
+        \begin{definition}{Pairing\footcite{GraduateCourseApplied}}
             Let \(\bG_0 = \abrak{g_0}\), \(\bG_1 = \abrak{g_1}\), \(\bG_T\) be
             three cyclic groups of prime order \(q\). A \emph{pairing} is an
             efficiently computable function \(e: \bG_0 \times \bG_1 \rightarrow
@@ -94,9 +93,9 @@
             \end{enumerate}
         \end{definition}
         \begin{enumerate}
-            \item Here, \(\bG_0\) and \(\bG_1\) are called \emph{source
+            \item<2-> Here, \(\bG_0\) and \(\bG_1\) are called \emph{source
             groups} and \(\bG_T\) is called the \emph{target group}.
-            \item When \(\bG_0 = \bG_1\), the pairing is said to be
+            \item<3-> When \(\bG_0 = \bG_1\), the pairing is said to be
             \emph{symmetric}.
         \end{enumerate}
     \end{frame}
@@ -113,7 +112,8 @@
                 each other.
             \end{itemize}
             \item<3-> We use a pairing-based anonymous key agreement involving a
-            private key generator (PKG).
+            private key generator
+            (PKG)\footcite{katePairingBasedOnionRouting2007}.
             \begin{enumerate}
                 \item PKG has its own master private and public key.
                 \item PKG uses master secret key to generate secret keys for
@@ -121,6 +121,9 @@
                 \item Clients use this secret key to establish the shared secret
                 key.
             \end{enumerate}
+            \item<4-> Clients can now create \textbf{psuedonyms} or fake
+            identities \(id \rightarrow \brak{\cH\brak{id}}^r,
+            \cH:\mathcal{ID}\rightarrow\cG, r \in \bZ_q\).
         \end{enumerate}
     \end{frame}
 
@@ -134,20 +137,20 @@
             \item<3-> \textbf{Anonymous Credential}: Data possessed by a user
             that demonstrates their attributes, \emph{without revealing any
             additional information} about their identity.
-            \item<4-> For V2X, we require anonymous credentials to be issued to
-            vehicles regularly to ensure anonymity as well as to check
-            legitimacy of that vehicle.
-            \item<5-> We use DGSA (Dynamic Group Signatures with Attributes), an
-            anonymous credential signature scheme using attributes. The
-            anonymous credential can be abstracted as a \textbf{randomizable}
-            group element which proves legitimacy of user.
+            \item<4-> For V2X
+            \begin{itemize}
+                \item Anonymous credentials issued to vehicles regularly.
+                \item We use DGSA (Digital Group Signatures with Attributes)
+                \footcite{camenischZoneEncryptionAnonymous2020}, which gives us
+                a \textbf{randomizable} group element as the credential \(\sigma
+                \rightarrow \sigma^r, r \in \bZ_q\).
+            \end{itemize}
         \end{enumerate}
     \end{frame}
 
-    \section{Our Proposition}
     \begin{frame}
         \frametitle{Proposed Message Flow Diagram}
-        \begin{figure}[!ht]
+        \begin{figure}
             \centering
             \includegraphics[width=\columnwidth]{figs/flow.png}
             \caption{Message flow of the proposed scheme.}
@@ -159,7 +162,11 @@
         \frametitle{Proposed Message Flow}
         \begin{enumerate}
             \item<1-> Enrollment authority issues certificate to vehicle.
-            \item<2-> Issuer issues DGSA credential and vehicle secret key after
+            \begin{itemize}
+                \item Certificate is a long-term credential that can be used to
+                revoke the holder in case of misbehaviour.
+            \end{itemize}
+            \item<2-> Issuer issues DGSA credentials and secret key after
             verifying certificate.
             \begin{itemize}
                 \item This secret key is different from secret key associated
@@ -171,6 +178,9 @@
             \end{itemize}
             \item<3-> Vehicles exchange DGSA-signed randomized psuedonyms to
             generate shared key for futher communicaton.
+            \begin{itemize}
+                \item Used in verifying legitimacy of the other party.
+            \end{itemize}
         \end{enumerate}
     \end{frame}
 
@@ -179,14 +189,19 @@
         \begin{enumerate}
             \item<1-> \textbf{Advantages}
             \begin{itemize}
-                \item Fully anonymous communication, unlimited privacy.
-                \item Others cannot identify who is communicating.
+                \item Fully anonymous communication, unlimited privacy between
+                communicating parties.
+                \item Third parties cannot identify who is communicating.
+                \item Useful for sending extremely sensitive data.
+                \item Malicious vehicles can be revoked.
             \end{itemize}
             \item<2-> \textbf{Disadvantages}
             \begin{itemize}
-                \item A lot of pairing computations, for DGSA and for anonymous
+                \item Lots of pairing computations, for DGSA and for anonymous
                 key agreement. Incurs computational overheads.
                 \item Works for single-hop connections only.
+                \item May not be scalable to communicating with many vehicles
+                simultaneously in terms of storage overhead.
             \end{itemize}
         \end{enumerate}
     \end{frame}
@@ -195,9 +210,12 @@
     \begin{frame}
         \frametitle{Future Work}
         \begin{enumerate}
-            \item Encrypt V2X messages like CAMs.
-            \item Improve efficiency of the present work.
-            \item A new workflow for encryption using zones and zone managers.
+            \item<1-> Encrypt V2X messages like CAMs.
+            \item<2-> Improve efficiency of the present work.
+            \begin{itemize}
+                \item Use one of DGSA or anonymous key agreement, but not both?
+            \end{itemize}
+            \item<3-> A new workflow for encryption using zones and zone managers.
         \end{enumerate}
     \end{frame}
 

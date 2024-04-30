@@ -1,3 +1,56 @@
+@online{camenischZoneEncryptionAnonymous2020,
+  title = {Zone {{Encryption}} with {{Anonymous Authentication}} for {{V2V Communication}}},
+  author = {Camenisch, Jan and Drijvers, Manu and Lehmann, Anja and Neven, Gregory and Towa, Patrick},
+  date = {2020},
+  number = {2020/043},
+  url = {https://eprint.iacr.org/2020/043},
+  urldate = {2024-02-04},
+  abstract = {Vehicle-to-vehicle (V2V) communication systems are currently being prepared for real-world deployment, but they face strong opposition over privacy concerns. Position beacon messages are the main culprit, being broadcast in cleartext and pseudonymously signed up to 10 times per second. So far, no practical solutions have been proposed to en- crypt or anonymously authenticate V2V messages. We propose two cryptographic innovations that enhance the privacy of V2V communication. As a core contribution, we introduce zone-encryption schemes, where vehicles generate and authentically distribute encryption keys associated to static geographic zones close to their location. Zone encryption provides security against eavesdropping, and, combined with a suitable anonymous authentication scheme, ensures that messages can only be sent by genuine vehicles, while adding only 224 Bytes of cryptographic overhead to each message. Our second contribution is an authentication mechanism fine-tuned to the needs of V2V which allows vehicles to authentically distribute keys, and is called dynamic group signatures with attributes. Our instantiation features unlimited locally generated pseudonyms, negligible credential download-and-storage costs, identity recovery by a trusted authority, and compact signatures of 216 Bytes at a 128-bit security level.},
+  pubstate = {preprint},
+  keywords = {Privacy,V2X},
+  annotation = {Publication info: Published elsewhere. Minor revision. IEEE European Symposium on Security and Privacy 2020 conference},
+}
+
+@incollection{katePairingBasedOnionRouting2007,
+  title = {Pairing-{{Based Onion Routing}}},
+  booktitle = {Privacy {{Enhancing Technologies}}},
+  author = {Kate, Aniket and Zaverucha, Greg and Goldberg, Ian},
+  editor = {Borisov, Nikita and Golle, Philippe},
+  date = {2007},
+  volume = {4776},
+  pages = {95--112},
+  publisher = {Springer Berlin Heidelberg},
+  location = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-540-75551-7_7},
+  url = {http://link.springer.com/10.1007/978-3-540-75551-7_7},
+  urldate = {2024-04-04},
+  abstract = {This paper presents a novel use of pairing-based cryptography to improve circuit construction in onion routing anonymity networks. Instead of iteratively and interactively constructing circuits with a telescoping method, our approach builds a circuit with a single pass. The cornerstone of the improved protocol is a new pairing-based privacypreserving non-interactive key exchange. Compared to previous singlepass designs, our algorithm provides practical forward secrecy and leads to a reduction in the required amount of authenticated directory information. In addition, it requires significantly less computation and communication than the telescoping mechanism used by Tor. These properties suggest that pairing-based onion routing is a practical way to allow anonymity networks to scale gracefully.},
+  isbn = {978-3-540-75550-0},
+  langid = {english},
+}
+
+@online{SignatureSchemeEfficient,
+  title = {A {{Signature Scheme}} with {{Efficient Protocols}} | {{SpringerLink}}},
+  url = {https://link.springer.com/chapter/10.1007/3-540-36413-7_20},
+  urldate = {2024-04-30},
+}
+
+@article{yuePracticalPrivacypreservingCommunication2022b,
+  title = {A Practical Privacy-Preserving Communication Scheme for {{CAMs}} in {{C-ITS}}},
+  author = {Yue, Xiaohan and Zeng, Shuaishuai and Wang, Xibo and Yang, Lixin and Bai, Shi and He, Yuan},
+  date = {2022-03-01},
+  journaltitle = {Journal of Information Security and Applications},
+  shortjournal = {Journal of Information Security and Applications},
+  volume = {65},
+  pages = {103103},
+  issn = {2214-2126},
+  doi = {10.1016/j.jisa.2021.103103},
+  url = {https://www.sciencedirect.com/science/article/pii/S2214212621002799},
+  urldate = {2024-04-29},
+  abstract = {In a Collaborative Intelligent Transportation System (C-ITS), vehicles send collaborative awareness messages (CAMs) carrying information such as speed, position, and identity, to interact with other vehicles and to obtain transportation services. Traditionally, CAMs are broadcasted in plaintext over unsafe networks, which may leak sensitive information of the vehicle. On one hand, many existing works attempting to solve this problem focused on anonymous authentication, but ignored the confidentiality of CAMs. Conversely, some other attempts trying to keep the privacy of CAMs have backward security problems in key management or vehicle revocation. Therefore, in this paper, we present a practical privacy-preserving communication scheme for CAMs in C-ITS. To ensure the privacy of a vehicle's identity, our scheme mainly uses the re-randomizable PS signature method to realize anonymous authentication; and to meet backward security, we use the complete subtree method to realize both key management and vehicle revocation. In more details, our proposal fulfills more security and privacy requirements, such as correctness, anonymity, traceability, revocability, backward security and anti-illegal message dissemination, while also hiding the content of CAMs.},
+  keywords = {Anonymous authentication,C-ITS,Complete subtree,Revocable,Zone encryption},
+}
+
 @article{etsi-en-302-637,
   author          = "{European Telecommunications Standards Institute}",
   journal         = {},
@@ -8,55 +61,16 @@
   year            = {2019},
 }
 
-@inproceedings{chaumGroupSignatures1991,
-  title = {Group {{Signatures}}},
-  booktitle = {Advances in {{Cryptology}} — {{EUROCRYPT}} ’91},
-  author = {Chaum, David and family=Heyst, given=Eugène, prefix=van, useprefix=true},
-  editor = {Davies, Donald W.},
-  date = {1991},
-  pages = {257--265},
-  publisher = {Springer},
-  location = {Berlin, Heidelberg},
-  doi = {10.1007/3-540-46416-6_22},
-  abstract = {In this paper we present a new type of signature for a group of persons, called a group signature, which has the following properties:only members of the group can sign messages;the receiver can verify that it is a valid group signature, but cannot discover which group member made it;if necessary, the signature can be “opened”, so that the person who signed the message is revealed.These group signatures are a “generalization” of the credential/membership authentication schemes, in which one person proves that he belongs to a certain group.},
-  isbn = {978-3-540-46416-7},
-  langid = {english},
-  file = {C:\Users\goats\Zotero\storage\NR2BQSVZ\Chaum and van Heyst - 1991 - Group Signatures.pdf}
-}
-
 @online{J2735_202309V2XCommunications,
   title = {J2735\_202309: {{V2X Communications Message Set Dictionary}} - {{SAE International}}},
   shorttitle = {J2735\_202309},
   url = {https://www.sae.org/standards/content/j2735_202309/},
   urldate = {2024-04-15},
   abstract = {This SAE Standard specifies a message set, and its data frames and data elements, for use by applications that use vehicle to-everything (V2X) communications systems.},
-  file = {C:\Users\goats\Zotero\storage\U9LQY7LH\j2735_202309.html}
 }
 
-@online{pointchevalShortRandomizableSignatures2015,
-  title = {Short {{Randomizable Signatures}}},
-  author = {Pointcheval, David and Sanders, Olivier},
-  date = {2015},
-  number = {2015/525},
-  url = {https://eprint.iacr.org/2015/525},
-  urldate = {2024-04-26},
-  abstract = {Digital signature is a fundamental primitive with numerous applications. Following the development of pairing-based cryptography, several taking advantage of this setting have been proposed. Among them, the Camenisch-Lysyanskaya (CL) signature scheme is one of the most flexible and has been used as a building block for many other protocols. Unfortunately, this scheme suffers from a linear size in the number of messages to be signed which limits its use in many situations. In this paper, we propose a new signature scheme with the same features as CL-signatures but without the linear-size drawback: our signature consists of only two elements, whatever the message length, and our algorithms are more efficient. This construction takes advantage of using type 3 pairings, that are already widely used for security and efficiency reasons. We prove the security of our scheme without random oracles but in the generic group model. Finally, we show that protocols using CL-signatures can easily be instantiated with ours, leading to much more efficient constructions.},
-  pubstate = {preprint},
-  keywords = {Bilinear Groups,Digital Signature,Randomizable},
-  annotation = {Publication info: Published elsewhere. Major revision. CT-RSA 2016},
-  file = {C:\Users\goats\Zotero\storage\IAM94KM8\Pointcheval and Sanders - 2015 - Short Randomizable Signatures.pdf}
-}
-
-@online{bonehShortGroupSignatures2004,
-  title = {Short {{Group Signatures}}},
-  author = {Boneh, Dan and Boyen, Xavier and Shacham, Hovav},
-  date = {2004},
-  number = {2004/174},
-  url = {https://eprint.iacr.org/2004/174},
-  urldate = {2024-04-26},
-  abstract = {We construct a short group signature scheme. Signatures in our scheme are approximately the size of a standard RSA signature with the same security. Security of our group signature is based on the Strong Diffie-Hellman assumption and a new assumption in bilinear groups called the Decision Linear assumption. We prove security of our system, in the random oracle model, using a variant of the security definition for group signatures recently given by Bellare, Micciancio, and Warinschi.},
-  pubstate = {preprint},
-  keywords = {group signatures},
-  annotation = {Publication info: Published elsewhere. An extended abstract appears in CRYPTO 2004.},
-  file = {C:\Users\goats\Zotero\storage\HWKA78J7\Boneh et al. - 2004 - Short Group Signatures.pdf}
+@online{GraduateCourseApplied,
+  title = {A {{Graduate Course}} in {{Applied Cryptography}}},
+  url = {https://toc.cryptobook.us/},
+  urldate = {2024-04-30},
 }

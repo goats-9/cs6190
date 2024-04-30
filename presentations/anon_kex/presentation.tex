@@ -77,7 +77,28 @@
 
     \begin{frame}
         \frametitle{Pairings}
-        
+        \begin{definition}{Pairing}
+            Let \(\bG_0 = \abrak{g_0}\), \(\bG_1 = \abrak{g_1}\), \(\bG_T\) be
+            three cyclic groups of prime order \(q\). A \emph{pairing} is an
+            efficiently computable function \(e: \bG_0 \times \bG_1 \rightarrow
+            \bG_T\) satisfying the following properties:
+            \begin{enumerate}
+                \item \emph{bilinear}: for all \(u, u^{\prime} \in \bG_0\) and
+                \(v, v^{\prime} \in \bG_1\), we have
+                \begin{align}
+                    e\brak{uu^{\prime}, v} &= e\brak{u,v}e\brak{u^{\prime},v} \\
+                    e\brak{u, vv^{\prime}} &= e\brak{u,v}e\brak{u, v^{\prime}}
+                \end{align}
+                \item \emph{non-degenerate}: \(g_T := e\brak{g_0, g_1}\) is a
+                generator of \(\bG_T\).
+            \end{enumerate}
+        \end{definition}
+        \begin{enumerate}
+            \item Here, \(\bG_0\) and \(\bG_1\) are called \emph{source
+            groups} and \(\bG_T\) is called the \emph{target group}.
+            \item When \(\bG_0 = \bG_1\), the pairing is said to be
+            \emph{symmetric}.
+        \end{enumerate}
     \end{frame}
 
     \begin{frame}

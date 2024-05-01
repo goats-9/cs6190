@@ -36,38 +36,25 @@
     \end{frame}
 
     \begin{frame}
-        \frametitle{Message Types in V2X}
+        \frametitle{Motivation and Goals}
         \begin{enumerate}
             \item<1-> \textbf{Cooperative Awareness Messages} (CAMs)
             \footcite{etsi-en-302-637} and \textbf{Basic Safety Messages} (BSMs)
-            \footcite{J2735_202309V2XCommunications}.
-            \begin{enumerate}
-                \item Exchanged between vehicles to create awareness and support
-                cooperative performance of vehicles in the road network.
-                \item Includes status information such as time, position, speed,
+            \footcite{J2735_202309V2XCommunications}
+            \begin{itemize}
+                \item Include status information such as time, position, speed,
                 active systems, vehicle dimensions, etc.
                 \item Broadcasted unencrypted in 5.9 GHz channel (ETSI ITS-G5).
-                \item \textbf{Huge privacy concerns and threats!}
-            \end{enumerate}
-            \item<2-> Other types of messages
-            \begin{enumerate}
-                \item \textbf{Signal Phase and Timing} (SPaT)
-                \item \textbf{Roadside Infrastructure Information} (MAP)
-            \end{enumerate} 
-        \end{enumerate}
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Motivation and Goals}
-        \begin{enumerate}
-            \item<1-> Do we \emph{really} need to encrypt CAMs?
+                \item<2-> \textbf{Huge privacy concerns and threats!}
+                \item<2-> Most works focus on protecting/encrypting these.
+            \end{itemize}
+            \item<3-> Do we \emph{really} need to encrypt CAMs?
             \begin{itemize}
                 \item Google (Maps) may already be profiling us!
-                \item Focus on encrypting more sensitive messages and
-                information sent less frequently.
+                \item Focus on encrypting more sensitive messages.
             \end{itemize}
-            \item<2-> Unlimited privacy.
-            \item<3-> Better security guarantees (privacy, authenticity,
+            \item<4-> Unlimited privacy for vehicles.
+            \item<5-> Better security guarantees (authenticity,
             confidentiality).
         \end{enumerate}
     \end{frame}
@@ -105,20 +92,49 @@
         \begin{enumerate}
             \item<1-> A key agreement protocol where two parties agree on a
             shared secret key, without being able to determine the other party.
-            \item<2-> Pairing-based anonymous key agreement for V2X.
-            \item<3-> We use a pairing-based anonymous key agreement involving a
-            private key generator
-            (PKG)\footcite{katePairingBasedOnionRouting2007}.
+            \item<2-> Pairing-based anonymous key agreement for V2X involving a
+            private key generator (PKG)
+            \footcite{katePairingBasedOnionRouting2007}, which has master
+            keypair (\(mpk, msk\)).
+            \item<3-> Let \(e: \bG \times \bG \rightarrow \bG_T\) be a symmetric
+            pairing, where \(\bG = \abrak{g}, \bG_T\) are cyclic groups of order
+            \(q\). Suppose \(\cH : \cbrak{0,1}^* \rightarrow \bG\) is a hash
+            function.
+            \item<4-> \(\mathsf{Setup}\brak{1^\lambda}\)
             \begin{enumerate}
-                \item PKG has its own master private and public key.
-                \item PKG uses master secret key to generate secret keys for
-                clients.
-                \item Clients use this secret key to establish the shared secret
-                key.
+                \item \(s \in_R \bZ_q\)
+                \item Return \(msk = s, mpk = g^s\)
             \end{enumerate}
-            \item<4-> Clients can now create \textbf{psuedonyms} or fake
-            identities \(id \rightarrow \brak{\cH\brak{id}}^r,
-            \cH:\mathcal{ID}\rightarrow\cG, r \in \bZ_q\).
+            \item<5-> \(\mathsf{Issue}\brak{id}\): Issue secret key for user
+            \(id\).
+            \begin{enumerate}
+                \item Return \(sk_{id} = \brak{\cH\brak{id}}^{msk}\) to \(id\).
+            \end{enumerate}
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Anonymous Key Agreement}
+        \begin{enumerate}
+            \item<1-> \(\mathsf{KeyExchange}\brak{id}\)
+            \begin{enumerate}
+                \item Select \(r \in_R \bZ_q\)
+                \item Broadcast \emph{psuedonym} \(P_{id} \gets
+                \brak{\cH\brak{id}}^r\).
+                \item On receiving \(P_{id^{\prime}}\), return \(k \gets
+                e\brak{sk_{id}^r, P_{id^{\prime}}}\).
+            \end{enumerate}
+            \item<2-> \(k\) is the shared secret key, since
+            \begin{equation}
+                e\brak{sk_{id}^r, P_{id^{\prime}}} = e\brak{\brak{\cH\brak{id}}^{sr}, \brak{\cH\brak{id^{\prime}}}^{r^{\prime}}} = e\brak{\cH\brak{id}, \cH\brak{id^{\prime}}}^{srr^{\prime}}
+                \label{eq:aka-correctness}
+            \end{equation}
+            \item<3-> Hardness assumption: \emph{Bilinear Diffie-Hellman
+            Assumption}.
+            \begin{itemize}
+                \item Given \(g^a, g^b, g^c\), it is hard to compute \(e\brak{g,
+                g}^{abc}\).
+            \end{itemize}
         \end{enumerate}
     \end{frame}
 
@@ -132,7 +148,7 @@
             \item<3-> \textbf{Anonymous Credential}: Data possessed by a user
             that demonstrates their attributes, \emph{without revealing any
             additional information} about their identity.
-            \item<4-> For V2X
+            \item<4-> For V2X,
             \begin{itemize}
                 \item Anonymous credentials issued to vehicles regularly.
                 \item We use DGSA (Dynamic Group Signatures with Attributes)
